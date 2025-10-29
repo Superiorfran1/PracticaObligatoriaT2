@@ -3,7 +3,8 @@ import java.util.Scanner;
     public static void main(String[] args) {
         // Declaración de variables
         Scanner s = new Scanner(System.in);
-        int op, numHabDobles = 8, numHabIndividuales = 2, precioHabDoble = 60, precioHabIndividual = 45;
+        int op, numDoubleRooms = 8, numSingleRooms = 2;
+        final int DOUBLE_ROOMS_PRICE = 60, SINGLE_ROOMS_PRICE = 45;
 
 
         // Pintado de Menú inicial
@@ -66,9 +67,9 @@ import java.util.Scanner;
         op = Integer.parseInt(s.nextLine());
         switch (op){
             case 1:
-                System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", numHabDobles + numHabIndividuales);
-                System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", numHabDobles, precioHabDoble);
-                System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", numHabIndividuales, precioHabIndividual);
+                System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", numDoubleRooms + numSingleRooms);
+                System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", numDoubleRooms, DOUBLE_ROOMS_PRICE);
+                System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", numSingleRooms, SINGLE_ROOMS_PRICE);
                 System.out.print("Pulsa ENTER para continuar...");
                 s.nextLine();
                 break;
