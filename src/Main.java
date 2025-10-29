@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
         // Pintado de Menú inicial
+        do {
         System.out.println("""
                 
                 
@@ -19,14 +20,14 @@ import java.util.Scanner;
                                  @@@@@@@@@@@@@@                  @@@@@@@@@@@@@@                                                                                                                    \s
                                    @@@@@@@@@@                     @@@@@@@@@@@                                                                                                                      \s
                                     @@@@@@@@@                      @@@@@@@@@                                                                                                                       \s
-                                    @@@@@@@@                        @@@@@@@@    .                             *@@@@@@                                                 :                            \s
+                                    @@@@@@@@                        @@@@@@@@                                  *@@@@@@                                                                              \s
                                     @@@@@@@@                        @@@@@@@@    @@@@@@@      @@@@@@@      @@@@@@@  @@@@@@    @@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@    @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@=    @@@@@@@      @@@@@@@     @@@@@@     @@@@@@@        @@@@@@@        @@@@@@@             @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@    @@@@@@@      @@@@@@        @@@@@@@@       @@@@@@@%            @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@%            @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@             @@@@@@@                      \s
-                                    @@@@@@@@                        @@@@@@@     @@@@@@@@@@@@@@@@@@@@   @@@@@@@       @@@@@@@.      @@@@@@@@       @@@@@@@@@@@@@@@     @@@@@@@                      \s
-                                    @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@-      @@@@@@@@       @@@@@@@             @@@@@@@                      \s
+                                    @@@@@@@@                        @@@@@@@     @@@@@@@@@@@@@@@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@@@@@@@@@     @@@@@@@                      \s
+                                    @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@             @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@%            @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@   @@@@@@@       @@@@@@@       @@@@@@@@       @@@@@@@%            @@@@@@@                      \s
                                     @@@@@@@@                        @@@@@@@     @@@@@@@      @@@@@@@    @@@@@@#      @@@@@@=       @@@@@@@@       @@@@@@@#            @@@@@@@                      \s
@@ -39,11 +40,11 @@ import java.util.Scanner;
                                     @@@@@@@@                        @@@@@@@     %%%%%%  %%  %* #%  %%%%%-  #%#%#  %%%%%#     %%%%%*  *#%%    -%#%####  %##%: ###%%-:%%#%% =%%%%#   %%+             \s
                                     @@@@@@@@                        @@@@@@@    :*       *#  #: +*  #    *  #. -*  #    %     *+   *# **      :* :- +*  #  *- +*  ++  ++   #    ##  %*              \s
                                     @@@@@@@@                        @@@@@@@    :%    %= *#  #  =*  %   *%  *# +*  #   .*     ##  :#+ +*      :* +* **  #+ #- =* #+   #*   #*   ##   *.             \s
-                                    @@@@@@@@                        @@@@@@@     =%%%%-  %%  +%%%.  %:#%%   %* #% .%.%%%      %%:%%   :%%%    =% #% %%  %  %+ %%  %%  %%    #%%%#  %%%              \s
+                                    @@@@@@@@                        @@@@@@@     =%%%%-  %%  +%%%.  %:#%%   %* #%  %.%%%      %%:%%   :%%%    =% #% %%  %  %+ %%  %%  %%    #%%%#  %%%              \s
                                     @@@@@@@@                        @@@@@@@                                                                                                                        \s
                                     @@@@@@@@                        @@@@@@@+                                                                                                                       \s
                                     @@@@@@@@                        @@@@@@@@                                                                                                                       \s
-                                    @@@@@@@@                       .@@@@@@@@                                                                                                                       \s
+                                    @@@@@@@@                        @@@@@@@@                                                                                                                       \s
                                    @@@@@@@@@@                      @@@@@@@@@                                                                                                                       \s
                                   @@@@@@@@@@@@                    @@@@@@@@@@@@                                                                                                                     \s
                              .@@@@@@@@@@@@@@@@@@@@@          @@@@@@@@@@@@@@@@@@@@@                                                                                                                 \s
@@ -63,30 +64,43 @@ import java.util.Scanner;
 
         // Solicitud y tratamiento de opción deseada
         op = Integer.parseInt(s.nextLine());
-        if (op == 1){
-            System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", numHabDobles + numHabIndividuales);
-            System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", numHabDobles, precioHabDoble);
-            System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", numHabIndividuales, precioHabIndividual);
-        } else if (op == 2) {
-            System.out.println("""
+        switch (op){
+            case 1:
+                System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", numHabDobles + numHabIndividuales);
+                System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", numHabDobles, precioHabDoble);
+                System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", numHabIndividuales, precioHabIndividual);
+                System.out.print("Pulsa ENTER para continuar...");
+                s.nextLine();
+                break;
+            case 2:
+                System.out.println("""
                     ¿Que tipo de habitación deseas reservar?
                     1. Habitación individual.
                     2. Habitación doble.
                     Introduce la opción deseada:\s""");
-            op = Integer.parseInt(s.nextLine());
-            if (op == 1){
+                op = Integer.parseInt(s.nextLine());
+                switch (op){
+                    case 1:
 
-            } else if (op == 2) {
+                        break;
+                    case 2:
 
-            } else {
+                        break;
+                    default:
+                        System.out.println("El valor introducido no es válido...");
+                        break;
+                }
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            default:
                 System.out.println("El valor introducido no es válido...");
-            }
-        } else if (op == 3) {
-
-        } else if (op == 4) {
-
-        } else {
-            System.out.println("El valor introducido no es válido...");
+                break;
         }
+        }while (true);
     }
 }
