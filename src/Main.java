@@ -6,8 +6,14 @@ public class Main {
     public static void main(String[] args) {
         // Declaración de variables
         Scanner s = new Scanner(System.in);
-        int op, nightNum, bookingNumDigit = 1, cont, passKeyboard;
-        float priceNight, total;
+        int op, nightNum, bookingNumDigit = 1, cont, passKeyboard, doubleReservationNum = 0, singleReservationNum = 0,
+                numBills200 = 10, numBills100 = 10, numBills50 = 20, numBills20 = 20, numBills10 = 20, numBills5 = 20,
+                numCoins200 = 50, numCoins100 = 50, numCoins50 = 50, numCoins20 = 50, numCoins10 = 50, numCoins5 = 50,
+                numCoins2 = 50, numCoins1 = 50, numReturnBills200 = 0, numReturnBills100 = 0, numReturnBills50 = 0,
+                numReturnBills20 = 0, numReturnBills10 = 0, numReturnBills5 = 0, numReturnCoins200 = 0,
+                numReturnCoins100 = 0, numReturnCoins50 = 0, numReturnCoins20 = 0, numReturnCoins10 = 0,
+                numReturnCoins5 = 0, numReturnCoins2 = 0, numReturnCoins1 = 0;
+        float priceNight, total, totalIncome = 0, introducedMoney;
         final int DOUBLE_ROOMS_PRICE = 60,NUM_DOUBLE_ROOMS = 8, NUM_SINGLE_ROOMS = 2, SINGLE_ROOMS_PRICE = 45;
         LocalDate entryDate = LocalDate.now(), exitDate = LocalDate.now();
         final String ADMIN_USER = "root";
@@ -16,7 +22,7 @@ public class Main {
         boolean simpleRoomOneOccuped = false, simpleRoomTwoOccuped = false, doubleRoomOneOccuped = false,
                 doubleRoomTwoOccuped = false, doubleRoomThreeOccuped = false, doubleRoomFourOccuped = false,
                 doubleRoomFiveOccuped = false, doubleRoomSixOccuped = false, doubleRoomSevenOccuped = false,
-                doubleRoomEightOccuped = false, exitApp = false, entryToday = false, flag = false;
+                doubleRoomEightOccuped = false, exitApp = false, entryToday = false, flag = false, moneyLack = false;
 
 
         // Pintado de Menú inicial
@@ -275,45 +281,56 @@ public class Main {
                         """, customerName, bookingNum, entryDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                             exitDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), choosedRoom.charAt(0) == 'S'? 1 : 2,
                             nightNum, priceNight, nightNum*priceNight, nightNum*priceNight, ((nightNum*priceNight) / 100) * 21, total);
+                    totalIncome += total;
                     do {
                     switch (choosedRoom){
                         case "S1":
+                            singleReservationNum++;
                             simpleRoomOneOccuped = false;
                             flag = true;
                             break;
                         case "S2":
+                            singleReservationNum++;
                             simpleRoomTwoOccuped = false;
                             flag = true;
                             break;
                         case "D1":
+                            doubleReservationNum++;
                             doubleRoomOneOccuped = false;
                             flag = true;
                             break;
                         case "D2":
+                            doubleReservationNum++;
                             doubleRoomTwoOccuped = false;
                             flag = true;
                             break;
                         case "D3":
+                            doubleReservationNum++;
                             doubleRoomThreeOccuped = false;
                             flag = true;
                             break;
                         case "D4":
+                            doubleReservationNum++;
                             doubleRoomFourOccuped = false;
                             flag = true;
                             break;
                         case "D5":
+                            doubleReservationNum++;
                             doubleRoomFiveOccuped = false;
                             flag = true;
                             break;
                         case "D6":
+                            doubleReservationNum++;
                             doubleRoomSixOccuped = false;
                             flag = true;
                             break;
                         case "D7":
+                            doubleReservationNum++;
                             doubleRoomSevenOccuped = false;
                             flag = true;
                             break;
                         case "D8":
+                            doubleReservationNum++;
                             doubleRoomEightOccuped = false;
                             flag = true;
                             break;
@@ -322,6 +339,102 @@ public class Main {
                             break;
                     }
                     }while(!flag);
+                    do {
+                    System.out.print("Introduzca el dinero solicitado (solo se permite en efectivo): ");
+                    introducedMoney = Float.parseFloat(s.nextLine()) - total;
+
+                    do {
+                    if (introducedMoney > 200 && numBills200 > 0){
+                        numReturnBills200++;
+                        numBills200--;
+                        introducedMoney -= 200;
+                    }
+                    else if (introducedMoney > 100 && numBills100 > 0){
+                        numReturnBills100++;
+                        numBills100--;
+                        introducedMoney -= 100;
+                    }
+                    else if (introducedMoney > 50 && numBills50 > 0){
+                        numReturnBills50++;
+                        numBills50--;
+                        introducedMoney -= 50;
+                    }
+                    else if (introducedMoney > 20 && numBills20 > 0){
+                        numReturnBills20++;
+                        numBills20--;
+                        introducedMoney -= 20;
+                    }
+                    else if (introducedMoney > 10 && numBills10 > 0){
+                        numReturnBills10++;
+                        numBills10--;
+                        introducedMoney -= 10;
+                    }
+                    else if (introducedMoney > 5 && numBills5 > 0){
+                        numReturnBills5++;
+                        numBills5--;
+                        introducedMoney -= 5;
+                    }
+                    else if (introducedMoney > 2 && numCoins200 > 0){
+                        numReturnCoins200++;
+                        numCoins200--;
+                        introducedMoney -= 2;
+                    }
+                    else if (introducedMoney > 1 && numCoins100 > 0){
+                        numReturnCoins100++;
+                        numCoins100--;
+                        introducedMoney -= 1;
+                    }
+                    else if (introducedMoney > 0.5 && numCoins50 > 0){
+                        numReturnCoins50++;
+                        numCoins50--;
+                        introducedMoney -= 0.5F;
+                    }
+                    else if (introducedMoney > 0.2 && numCoins20 > 0){
+                        numReturnCoins20++;
+                        numCoins20--;
+                        introducedMoney -= 0.2F;
+                    }
+                    else if (introducedMoney > 0.1 && numCoins10 > 0){
+                        numReturnCoins10++;
+                        numCoins10--;
+                        introducedMoney -= 0.1F;
+                    }
+                    else if (introducedMoney > 0.05 && numCoins5 > 0){
+                        numReturnCoins5++;
+                        numCoins5--;
+                        introducedMoney -= 0.05F;
+                    }
+                    else if (introducedMoney > 0.02 && numCoins2 > 0){
+                        numReturnCoins2++;
+                        numCoins2--;
+                        introducedMoney -= 0.02F;
+                    }
+                    else if (introducedMoney > 0.01 && numCoins1 > 0){
+                        numReturnCoins1++;
+                        numCoins1--;
+                        introducedMoney -= 0.01F;
+                    }else moneyLack = true;
+                    }while (introducedMoney > 0.009);
+                    if (moneyLack) System.out.println("No disponemos del suficiente cambio para dicho importe, por favor introduzca uno diferente...");
+                    else {
+                        System.out.println("Tu cambio es de:");
+                        if (numReturnBills200 > 0) System.out.printf("%d billetes de 200€.\n", numReturnBills200);
+                        if (numReturnBills100 > 0) System.out.printf("%d billetes de 100€.\n", numReturnBills100);
+                        if (numReturnBills50 > 0) System.out.printf("%d billetes de 50€.\n", numReturnBills50);
+                        if (numReturnBills20 > 0) System.out.printf("%d billetes de 20€.\n", numReturnBills20);
+                        if (numReturnBills10 > 0) System.out.printf("%d billetes de 10€.\n", numReturnBills10);
+                        if (numReturnBills5 > 0) System.out.printf("%d billetes de 5€.\n", numReturnBills5);
+                        if (numReturnCoins200 > 0) System.out.printf("%d monedas de 2€.\n", numReturnCoins200);
+                        if (numReturnCoins100 > 0) System.out.printf("%d monedas de 1€.\n", numReturnCoins100);
+                        if (numReturnCoins50 > 0) System.out.printf("%d monedas de 50 cents.\n", numReturnCoins50);
+                        if (numReturnCoins20 > 0) System.out.printf("%d monedas de 20 cents.\n", numReturnCoins20);
+                        if (numReturnCoins10 > 0) System.out.printf("%d monedas de 10 cents.\n", numReturnCoins10);
+                        if (numReturnCoins5 > 0) System.out.printf("%d monedas de 5 cents.\n", numReturnCoins5);
+                        if (numReturnCoins2 > 0) System.out.printf("%d monedas de 2 cents.\n", numReturnCoins2);
+                        if (numReturnCoins1 > 0) System.out.printf("%d monedas de 1 cents.\n", numReturnCoins1);
+                    }
+                    }while (moneyLack);
+
                     System.out.println("Pulsa ENTER para continuar...");
                     s.nextLine();
                     break;
@@ -344,6 +457,9 @@ public class Main {
                         }
                     }while((!userKeyboard.equals(ADMIN_USER) || passKeyboard != ADMIN_PASS) && cont < 3);
                     if (userKeyboard.equals(ADMIN_USER) && passKeyboard == ADMIN_PASS){
+                        for (int i = 0; i < 50; i++) {
+                            System.out.println();
+                        }
                         System.out.printf("""
                                 Bienvenido %s!
                                 
@@ -355,10 +471,28 @@ public class Main {
                         op = Integer.parseInt(s.nextLine());
                         switch (op) {
                             case 1:
-
+                                System.out.printf("Se ha recaudado un total de %.2f€ y han habido %d reservas, de las cuales:\n", totalIncome, doubleReservationNum + singleReservationNum);
+                                System.out.printf("- %d reservas son de habitaciones individuales.", singleReservationNum);
+                                System.out.printf("- %d reservas son de habitaciones dobles.", doubleReservationNum);
                                 break;
                             case 2:
-
+                                System.out.println("Actualmente quedan:");
+                                System.out.printf("%d billetes de 200€.\n", numBills200);
+                                System.out.printf("%d billetes de 100€.\n", numBills100);
+                                System.out.printf("%d billetes de 50€.\n", numBills50);
+                                System.out.printf("%d billetes de 20€.\n", numBills20);
+                                System.out.printf("%d billetes de 10€.\n", numBills10);
+                                System.out.printf("%d billetes de 5€.\n", numBills5);
+                                System.out.printf("%d monedas de 2€.\n", numCoins200);
+                                System.out.printf("%d monedas de 1€.\n", numCoins100);
+                                System.out.printf("%d monedas de 50 cents.\n", numCoins50);
+                                System.out.printf("%d monedas de 20 cents.\n", numCoins20);
+                                System.out.printf("%d monedas de 10 cents.\n", numCoins10);
+                                System.out.printf("%d monedas de 5 cents.\n", numCoins5);
+                                System.out.printf("%d monedas de 2 cents.\n", numCoins2);
+                                System.out.printf("%d monedas de 1 cents.\n", numCoins1);
+                                System.out.println("\nPulsa ENTER para continuar...");
+                                s.nextLine();
                                 break;
                             case 3:
                                 System.out.print("Saliendo de la app");
