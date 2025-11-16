@@ -17,7 +17,7 @@ public class Main {
         final int DOUBLE_ROOMS_PRICE = 60,NUM_DOUBLE_ROOMS = 8, NUM_SINGLE_ROOMS = 2, SINGLE_ROOMS_PRICE = 45;
         LocalDate entryDate = LocalDate.now(), exitDate = LocalDate.now();
         final String ADMIN_USER = "root";
-        final int ADMIN_PASS = 1234;a
+        final int ADMIN_PASS = 1234;
         String keyboard, choosedRoom = "", customerName = "", bookingNum = "", userKeyboard;
         boolean simpleRoomOneOccuped = false, simpleRoomTwoOccuped = false, doubleRoomOneOccuped = false,
                 doubleRoomTwoOccuped = false, doubleRoomThreeOccuped = false, doubleRoomFourOccuped = false,
