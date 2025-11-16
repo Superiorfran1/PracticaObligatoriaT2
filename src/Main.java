@@ -14,7 +14,8 @@ public class Main {
                 numReturnCoins100 = 0, numReturnCoins50 = 0, numReturnCoins20 = 0, numReturnCoins10 = 0,
                 numReturnCoins5 = 0, numReturnCoins2 = 0, numReturnCoins1 = 0;
         float priceNight, total, totalIncome = 0, introducedMoney;
-        final int DOUBLE_ROOMS_PRICE = 60,NUM_DOUBLE_ROOMS = 8, NUM_SINGLE_ROOMS = 2, SINGLE_ROOMS_PRICE = 45;
+        final int DOUBLE_ROOMS_PRICE = 60, SINGLE_ROOMS_PRICE = 45;
+        int numDoubleRoom = 8, numSingleRoom = 2;
         LocalDate entryDate = LocalDate.now(), exitDate = LocalDate.now();
         final String ADMIN_USER = "root";
         final int ADMIN_PASS = 1234;
@@ -88,9 +89,9 @@ public class Main {
             }
             switch (op){
                 case 1:
-                    System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", NUM_DOUBLE_ROOMS + NUM_SINGLE_ROOMS);
-                    System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", NUM_DOUBLE_ROOMS, DOUBLE_ROOMS_PRICE);
-                    System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", NUM_SINGLE_ROOMS, SINGLE_ROOMS_PRICE);
+                    System.out.printf("Actualmente quedan %d habitaciones disponibles. De las cuales:\n", numDoubleRoom + numSingleRoom);
+                    System.out.printf("• %d son habitaciones dobles (%d€/noche).\n", numDoubleRoom, DOUBLE_ROOMS_PRICE);
+                    System.out.printf("• %d son habitaciones individuales (%d€/noche).\n", numSingleRoom, SINGLE_ROOMS_PRICE);
                     System.out.print("Pulsa ENTER para continuar...");
                     s.nextLine();
                     for (int i = 0; i < 100; i++) {
@@ -243,46 +244,19 @@ public class Main {
                                 System.out.println("El valor introducido no es válido...");
                                 break;
                         }
+                        if (choosedRoom.charAt(0) == 'D') numDoubleRoom--;
+                        else numSingleRoom--;
                     }while (op != 1 && op != 2);
                     break;
                 case 3:
+                    do {
                     System.out.print("Introduce tu número de habitación: ");
                     choosedRoom = s.nextLine();
                     nightNum = exitDate.getDayOfYear() - entryDate.getDayOfYear();
                     priceNight = choosedRoom.charAt(0) == 'S'? DOUBLE_ROOMS_PRICE : SINGLE_ROOMS_PRICE;
                     total = (nightNum*priceNight) + ((nightNum*priceNight) / 100) * 21;
-                    System.out.printf("""
-                        ‖=======================================================================‖
-                        ‖                                                                       ‖
-                        ‖\t\t███████╗ █████╗  ██████╗████████╗██╗   ██╗██████╗  █████╗       ‖
-                        ‖\t\t██╔════╝██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔══██╗      ‖
-                        ‖\t\t█████╗  ███████║██║        ██║   ██║   ██║██████╔╝███████║      ‖
-                        ‖\t\t██╔══╝  ██╔══██║██║        ██║   ██║   ██║██╔══██╗██╔══██║      ‖
-                        ‖\t\t██║     ██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║██║  ██║      ‖
-                        ‖\t\t╚═╝     ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝      ‖
-                        ‖                                                                       ‖
-                        ‖=======================================================================‖
-                        ‖                                   ‖                                   ‖
-                        ‖Descripción:                       ‖  %30s   ‖
-                        ‖Confir:                            ‖  %7s                          ‖
-                        ‖Entrada:                           ‖    %10s                     ‖
-                        ‖Salida:                            ‖    %10s                     ‖
-                        ‖Pax:                               ‖    %d                              ‖
-                        ‖Noches:                            ‖  %3d                              ‖
-                        ‖Tarifa:                            ‖  %6.2f€                          ‖
-                        ‖Monto o total:                     ‖  %6.2f€                         ‖
-                        ‖Subtotal:                          ‖  %6.2f€                         ‖
-                        ‖IVA:                               ‖  %6.2f€                          ‖
-                        ‖                                   ‖                                   ‖
-                        ‖===================================‖===================================‖
-                        ‖TOTAL:                             ‖  %6.2f€                         ‖
-                        ‖===================================‖===================================‖
-                        
-                        """, customerName, bookingNum, entryDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                            exitDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), choosedRoom.charAt(0) == 'S'? 1 : 2,
-                            nightNum, priceNight, nightNum*priceNight, nightNum*priceNight, ((nightNum*priceNight) / 100) * 21, total);
+
                     totalIncome += total;
-                    do {
                     switch (choosedRoom){
                         case "S1":
                             singleReservationNum++;
@@ -338,6 +312,37 @@ public class Main {
                             System.out.println("No existe ninguna habitación con ese número, vuelva a introducirlo...");
                             break;
                     }
+                    if (flag)
+                        System.out.printf("""
+                        ‖=======================================================================‖
+                        ‖                                                                       ‖
+                        ‖\t\t███████╗ █████╗  ██████╗████████╗██╗   ██╗██████╗  █████╗       ‖
+                        ‖\t\t██╔════╝██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔══██╗      ‖
+                        ‖\t\t█████╗  ███████║██║        ██║   ██║   ██║██████╔╝███████║      ‖
+                        ‖\t\t██╔══╝  ██╔══██║██║        ██║   ██║   ██║██╔══██╗██╔══██║      ‖
+                        ‖\t\t██║     ██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║██║  ██║      ‖
+                        ‖\t\t╚═╝     ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝      ‖
+                        ‖                                                                       ‖
+                        ‖=======================================================================‖
+                        ‖                                   ‖                                   ‖
+                        ‖Descripción:                       ‖  %30s   ‖
+                        ‖Confir:                            ‖  %7s                          ‖
+                        ‖Entrada:                           ‖    %10s                     ‖
+                        ‖Salida:                            ‖    %10s                     ‖
+                        ‖Pax:                               ‖    %d                              ‖
+                        ‖Noches:                            ‖  %3d                              ‖
+                        ‖Tarifa:                            ‖  %6.2f€                          ‖
+                        ‖Monto o total:                     ‖  %6.2f€                         ‖
+                        ‖Subtotal:                          ‖  %6.2f€                         ‖
+                        ‖IVA:                               ‖  %6.2f€                          ‖
+                        ‖                                   ‖                                   ‖
+                        ‖===================================‖===================================‖
+                        ‖TOTAL:                             ‖  %6.2f€                         ‖
+                        ‖===================================‖===================================‖
+                        
+                        """, customerName, bookingNum, entryDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                exitDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), choosedRoom.charAt(0) == 'S'? 1 : 2,
+                                nightNum, priceNight, nightNum*priceNight, nightNum*priceNight, ((nightNum*priceNight) / 100) * 21, total);
                     }while(!flag);
                     do {
                     System.out.print("Introduzca el dinero solicitado (solo se permite en efectivo): ");
@@ -414,7 +419,7 @@ public class Main {
                         numCoins1--;
                         introducedMoney -= 0.01F;
                     }else moneyLack = true;
-                    }while (introducedMoney > 0.009);
+                    }while (introducedMoney > 0.009 && !moneyLack);
                     if (moneyLack) System.out.println("No disponemos del suficiente cambio para dicho importe, por favor introduzca uno diferente...");
                     else {
                         System.out.println("Tu cambio es de:");
@@ -434,6 +439,8 @@ public class Main {
                         if (numReturnCoins1 > 0) System.out.printf("%d monedas de 1 cents.\n", numReturnCoins1);
                     }
                     }while (moneyLack);
+                    if (choosedRoom.charAt(0) == 'D') numDoubleRoom++;
+                    else numSingleRoom++;
 
                     System.out.println("Pulsa ENTER para continuar...");
                     s.nextLine();
@@ -474,6 +481,11 @@ public class Main {
                                 System.out.printf("Se ha recaudado un total de %.2f€ y han habido %d reservas, de las cuales:\n", totalIncome, doubleReservationNum + singleReservationNum);
                                 System.out.printf("- %d reservas son de habitaciones individuales.", singleReservationNum);
                                 System.out.printf("- %d reservas son de habitaciones dobles.", doubleReservationNum);
+                                System.out.println("\nPulsa ENTER para continuar...");
+                                s.nextLine();
+                                for (int i = 0; i < 50 ; i++) {
+                                    System.out.println();
+                                }
                                 break;
                             case 2:
                                 System.out.println("Actualmente quedan:");

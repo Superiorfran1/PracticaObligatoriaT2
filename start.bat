@@ -1,1 +1,1 @@
-java -jar C:\Users\junio\IdeaProjects\ejRepaso1\PracticaObligatoriaT2\out\artifacts\PracticaObligatoriaT2_jar\PracticaObligatoriaT2.jar
+java -jar .idea\artifacts\PracticaObligatoriaT2_jar\PracticaObligatoriaT2.jar
