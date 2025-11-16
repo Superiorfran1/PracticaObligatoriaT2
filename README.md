@@ -1,4 +1,5 @@
 README
+Pasos para ejecutar el programa:
 
 1.- Si no tienes el JRE de Java, debes instalarlo a la versión más reciente. Si lo tienes, sigue los siguientes pasos:
 
@@ -7,3 +8,7 @@ README
 3.- Ejecuta (doble click) el archivo "start.bat".
 
 4.- Disfruta de la aplicación.
+
+Datos a tener en cuenta:
+Usuario del admin: root
+Contraseña del admin: 1234
