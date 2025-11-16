@@ -10,5 +10,7 @@ Pasos para ejecutar el programa:
 4.- Disfruta de la aplicación.
 
 Datos a tener en cuenta:
+
 Usuario del admin: root
+
 Contraseña del admin: 1234
