@@ -1,1 +1,0 @@
-java -jar .idea\artifacts\PracticaObligatoriaT2_jar\PracticaObligatoriaT2.jar
